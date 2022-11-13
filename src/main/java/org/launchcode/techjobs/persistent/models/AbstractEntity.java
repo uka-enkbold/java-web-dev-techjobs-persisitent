@@ -1,12 +1,19 @@
 package org.launchcode.techjobs.persistent.models;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Id;
+import org.hibernate.validator.constraints.Length;
 import java.util.Objects;
 
-
+@MappedSuperclass
 public abstract class AbstractEntity {
 
+    @Id
+    @GeneratedValue
     private int id;
 
+    @Length(min = 1, max = 50)
     private String name;
 
     public int getId() {
