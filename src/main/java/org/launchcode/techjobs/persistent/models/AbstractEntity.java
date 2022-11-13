@@ -1,12 +1,25 @@
 package org.launchcode.techjobs.persistent.models;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 import java.util.Objects;
 
-
+// part2 add MappedSuperclass
+@MappedSuperclass
 public abstract class AbstractEntity {
 
+    @Id
+    @GeneratedValue
     private int id;
-
+//make the name no longer than 50 characters
+//    @Length(min = 1, max = 50)
+    @Size(min=1, max=50)
+    @NotBlank
     private String name;
 
     public int getId() {
@@ -39,4 +52,5 @@ public abstract class AbstractEntity {
         return Objects.hash(id);
     }
 
+    public abstract Object get();
 }
